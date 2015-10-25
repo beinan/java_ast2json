@@ -66,7 +66,8 @@ object JavaAst2Json {
     else
       JsString("")
     Json.obj("package" -> package_name,
-      "types" -> cu.getTypes().map(ast2json(_)))
+      "types" -> cu.getTypes().map(ast2json(_)),
+      "source" -> JsArray(cu.toString().split('\n').map(JsString(_))))
   }
 
   def class2json(c: ClassOrInterfaceDeclaration) = {
